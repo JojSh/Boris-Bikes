@@ -17,11 +17,14 @@ describe DockingStation do
     expect(bike).to be_working
   end
 
+  it { is_expected.to respond_to(:broken_bike) }
+
   it 'shows bike if a bike is docked' do
     station = subject
     station.dock_bike(Bike.new)
     expect(subject.bikes).not_to be_nil
   end
+
 
   describe '#bikes' do
     it 'returns an array' do
@@ -44,6 +47,13 @@ describe DockingStation do
       it 'docks a bike and releases it' do
           subject.dock_bike(Bike.new)
           expect(subject.release_bike).to be_a(Bike)
+      end
+
+      it 'does not release broken bike' do
+        bike = Bike.new
+        bike.broken = true
+        subject.dock_bike(bike)
+        expect { subject.release_bike}.to raise_error("There are no working bikes.")
       end
   end
 
