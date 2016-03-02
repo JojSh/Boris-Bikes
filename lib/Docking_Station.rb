@@ -10,7 +10,7 @@ class DockingStation
    end
 
    def release_bike
-     if @bike_count.count < 1 then raise("No more bikes.")
+     if empty? then raise("No more bikes.")
      else
        @bike_count.pop
       #  @bike = bike
@@ -18,7 +18,7 @@ class DockingStation
    end
 
    def dock(bike)   # setter method
-   	if @bike_count.count > 19 then raise("Bike dock is full.")
+   	if full? then raise("Bike dock is full.")
    else
      @bike_count << bike
      @bike = bike
@@ -26,4 +26,18 @@ class DockingStation
    end
 
    attr_reader :bike  # getter method
+
+private
+  def full?
+    if @bike_count.count > 19
+      true
+    end
+  end
+
+    def empty?
+      if @bike_count.count == 0
+        true
+      end
+    end
+
 end
