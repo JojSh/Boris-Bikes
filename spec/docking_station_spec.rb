@@ -14,7 +14,7 @@ describe DockingStation do
   end
 
 	it 'can dock a bike' do
-		bike = Bike.new
+		bike = double(:bike)
 		subject.dock(bike)
 		expect(subject.bike).to eq bike
 		# expect(bike.dock).to eq true
@@ -26,7 +26,8 @@ describe DockingStation do
   end
 
   it 'allows a user to report a bike as broken'do
-  	(bike = Bike.new).report_broken
+  	# (bike = Bike.new).report_broken
+  	(bike = double(:bike)).report_broken
     expect(bike.working?).to eq false
   end
 
@@ -48,14 +49,14 @@ describe DockingStation do
   end
 
 		it 'number of bikes increases when a bike is docked' do
-			bike = Bike.new
+			bike = double(:bike)
       expect(subject.count).to eq 1
 			subject.dock(bike)
 			expect(subject.count).to eq 2
 	  end
 
 		it 'expects an error when bike dock is full' do
-		  bike = Bike.new
+		  bike = double(:bike)
 		  (DockingStation::DEFAULT_CAPACITY-1).times do subject.dock(bike) end
 		  expect{subject.dock(bike)}.to raise_error(RuntimeError, "Bike dock is full.")
 	  end
