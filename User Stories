@@ -1,0 +1,48 @@
+Object (nouns):
+
+Person
+bike
+docking station
+
+
+Messages (verbs):
+
+use
+docking
+release
+see
+working
+
+
+A Domain Model is : "an abstract representation of the objects within a system,
+                    and the messages they use to communicate with one another."
+
+                    They consist of entities (as rectangles) with their relationships
+                    delineated with lines and arrows.
+
+                    "A way to get a broad-brush overview of an area of interest"
+
+                    One of the first steps in translating user stories into class
+                    structures, as well as in the software design process generally.
+
+A Feature Test is : "is a test of how those objects and messages work together
+                     in code."
+
+A Stack Trace is  : will give you an example of what caused the error, the path
+                    in which the error happened, and the line number.
+
+                    "LoadError: cannot load such file -- ./docking_station.rb
+	                  from /Users/josephsharratt/.rvm/rubies/ruby-2.2.1/lib/ruby/
+                    site_ruby/2.2.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+
+
+How to use one    : (After picking error apart with pair) take the name
+                    (e.g.LoadError) to Rubydocs and search for it under exceptions.
+
+                    If the error is one that we wanted to return, we can use it
+                    guide our Unit Tests (RSpec) to hopefully fail with something
+                    like the same error messages.
+
+How to debug an   :
+error with a
+stack trace
