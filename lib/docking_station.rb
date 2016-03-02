@@ -6,14 +6,13 @@ class DockingStation
   attr_reader :bike
 
   def release_bike
-    bike = Bike.new
+    if @bike.nil?
+      raise "There are no bikes."
+    end
+    @bike  = nil
   end
 
-  def return_bike(bike)
+  def dock_bike(bike)
     @bike = bike
-  end
-
-  def docked_bike
-    @bike
   end
 end
