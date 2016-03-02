@@ -16,8 +16,4 @@ describe DockingStation do
     station.return_bike(bike)
     expect(subject.docked_bike).not_to be_nil
   end
-
-
-
-
 end
