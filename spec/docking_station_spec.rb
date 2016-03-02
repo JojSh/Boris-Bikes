@@ -5,6 +5,13 @@ describe DockingStation do
 
   it { is_expected.to respond_to(:dock_bike).with(1).argument }
 
+  describe "#new" do
+    it "Should set the default change the default value when provided as an argument" do
+      station = DockingStation.new(25)
+      expect(station.capacity).to eq(25)
+    end
+  end
+
   it 'releases working bikes' do
     bike = Bike.new
     expect(bike).to be_working
