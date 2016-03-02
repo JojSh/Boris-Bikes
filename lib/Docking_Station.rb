@@ -18,7 +18,11 @@ class DockingStation
    end
 
    def dock(bike)   # setter method
+   	if @bike_count > 9 then raise("Bike dock is full.") 
+   else
+     @bike_count +=1
      @bike = bike
+ 	end
    end
 
    attr_reader :bike  # getter method
