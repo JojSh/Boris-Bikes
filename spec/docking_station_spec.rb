@@ -13,8 +13,25 @@ describe DockingStation do
     # expect(subject).to respond_to(:dock_bike)
   end
 
+	it 'can dock a bike' do
+		bike = Bike.new
+		subject.dock(bike)
+		expect(subject.bike).to eq bike
+		# expect(bike.dock).to eq true
+	end
+
   it 'can release working bikes' do
     bike = subject.release_bike
     expect(bike).to be_working
   end
+
+	it 'can show amount of bikes in docking station' do
+		expect(subject.count).to eq 5
+	end
+
+	it 'expects an error when no more bikes are left' do
+		5.times do subject.release_bike end
+		expect{subject.release_bike}.to raise_error("No more bikes.")
+	end
+
 end
