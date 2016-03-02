@@ -25,6 +25,19 @@ describe DockingStation do
     expect(bike).to be_working
   end
 
+  it 'allows a user to report a bike as broken'do
+  	(bike = Bike.new).report_broken
+    expect(bike.working?).to eq false
+  end
+
+  it 'will refuse to release a broken_bike' do
+    subject.bike_count.last.report_broken
+    expect{subject.release_bike}.to raise_error("No more working bikes.")
+  end
+
+  # xit 'can receive both broken and working bikes'do
+  # end  # not needed because already receives both?
+
 	it 'can show amount of bikes in docking station' do
 		expect(subject.count).to eq 1
 	end
