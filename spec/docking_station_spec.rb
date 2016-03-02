@@ -32,20 +32,18 @@ describe DockingStation do
 	it 'expects an error when no more bikes are left' do
 		subject.release_bike
 		expect{subject.release_bike}.to raise_error("No more bikes.")
+  end
 
-end
 		it 'number of bikes increases when a bike is docked' do
 			bike = Bike.new
-      		expect(subject.count).to eq 1
+      expect(subject.count).to eq 1
 			subject.dock(bike)
 			expect(subject.count).to eq 2
-	end
+	  end
 
 		it 'expects an error when bike dock is full' do
-		bike = Bike.new
-		19.times do subject.dock(bike) end
-		expect{subject.dock(bike)}.to raise_error(RuntimeError, "Bike dock is full.")
-
-	end
-
+		  bike = Bike.new
+		  (DockingStation::DEFAULT_CAPACITY-1).times do subject.dock(bike) end
+		  expect{subject.dock(bike)}.to raise_error(RuntimeError, "Bike dock is full.")
+	  end
 end
