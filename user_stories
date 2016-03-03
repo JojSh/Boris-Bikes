@@ -1,0 +1,17 @@
+Objects (Nouns)
+
+maintainer of the system
+broken_bikes
+working bikes
+docking station
+
+garages
+vans
+
+
+Messages (Verbs)
+
+take broken_bikes   }
+deliver bikes       }   same 'deliver' method?
+distribute          }
+collect             } 
