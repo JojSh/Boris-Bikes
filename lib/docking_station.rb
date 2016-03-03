@@ -16,6 +16,7 @@ class DockingStation
     if empty?
       raise "There are no bikes."
     end
+    
     if working_bikes.empty?
       fail 'There are no working bikes.'
     end
@@ -23,7 +24,7 @@ class DockingStation
   end
 
   def broken_bike(bike)
-    bike.broken == true
+    bike.working == false
     dock_bike(bike)
   end
 
@@ -35,7 +36,7 @@ class DockingStation
   private
 
   def working_bikes
-    @bikes.select{ |bike| bike.broken == false }
+    @bikes.select{ |bike| bike.working == true }
   end
 
   def full?
