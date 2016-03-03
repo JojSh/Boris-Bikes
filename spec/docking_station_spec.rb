@@ -15,7 +15,7 @@ describe DockingStation do
   it { is_expected.to respond_to(:broken_bike) }
 
   it 'shows bike if a bike is docked' do
-    subject.dock(Bike.new)
+    subject.dock double(:bike)
     expect(subject.bikes).not_to be_nil
   end
 
@@ -27,8 +27,8 @@ describe DockingStation do
 
   describe '#dock' do
     it 'raises an error when the docking station is full' do
-      subject.capacity.times { subject.dock(Bike.new) }
-      expect { subject.dock(Bike.new) }.to raise_error('The docking station is full.')
+      subject.capacity.times { subject.dock double(:bike) }
+      expect { subject.dock double(:bike) }.to raise_error('The docking station is full.')
     end
   end
 
@@ -37,28 +37,23 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error('There are no bikes.')
     end
 
-    it 'docks a bike and releases it' do
-      subject.dock(Bike.new)
-      expect(subject.release_bike).to be_a(Bike)
-    end
-
     it 'does not release broken bike' do
-      bike = Bike.new
+      bike = double(:bike)
       bike.report_broken
       subject.dock(bike)
       expect { subject.release_bike }.to raise_error('There are no working bikes.')
     end
 
     it 'Releases a working bike when there are both broken and working bikes.' do
-      3.times { subject.dock(Bike.new) }
-      bike = Bike.new
+      3.times { subject.dock double(:bike) }
+      bike = double(:bike)
       bike.report_broken
       subject.dock(bike)
       expect(subject.release_bike).to be_working
     end
 
     it 'Releases working bikes' do
-      bike = Bike.new
+      bike = double(:bike)
       subject.dock(bike)
       expect(subject.release_bike).to be_working
     end
