@@ -1,4 +1,3 @@
-# lib/dockingstation.rb
 require_relative 'Bike'
 
 class DockingStation
@@ -17,10 +16,10 @@ class DockingStation
     if empty?
       raise "There are no bikes."
     end
-    if @bikes.last.broken
+    if working_bikes.empty?
       fail 'There are no working bikes.'
     end
-    @bikes.pop
+    working_bikes.pop
   end
 
   def broken_bike(bike)
@@ -28,12 +27,16 @@ class DockingStation
     dock_bike(bike)
   end
 
-  def dock_bike(bike)
+  def dock(bike)
     fail "The docking station is full." if full?
     @bikes << bike
   end
 
   private
+
+  def working_bikes
+    @bikes.select{ |bike| bike.broken == false }
+  end
 
   def full?
     @bikes.length >= DEFAULT_CAPACITY
