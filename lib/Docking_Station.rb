@@ -30,9 +30,15 @@ class DockingStation
  	   end
    end
 
+
   def broken_bikes
-    ["Pogo sticks"]
+    broken_ary = @bike_count.select { |bike| bike.working? == false }
+    @bike_count.reject! {|bike| bike.working? == false }
+    broken_ary
   end
+
+
+
 
 private
   def full?

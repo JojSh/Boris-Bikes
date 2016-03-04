@@ -3,6 +3,7 @@ require 'docking_station'
 describe DockingStation do
 
   let(:bike) { double :bike }
+  let(:broken_bike){double :bike}
   let(:van)  { double :van  }
   # new_docking_station = DockingStation.new
 
@@ -67,7 +68,16 @@ describe DockingStation do
     it 'will return an array' do
       expect(subject.broken_bikes).to be_a(Array)
     end
+
+    # it 'will return an list of only broken bikes' do
+    #   allow(bike).to receive(:report_broken).and_return(false)
+    #   subject.dock(bike)
+    #   expect(subject.broken_bikes).to include(false) #to return an array of broken bikes
+    # end
+
+
   end
+
 
 
   describe "#misc" do
