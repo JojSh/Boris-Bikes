@@ -30,6 +30,9 @@ class DockingStation
  	   end
    end
 
+  def broken_bikes
+    ["Pogo sticks"]
+  end
 
 private
   def full?
